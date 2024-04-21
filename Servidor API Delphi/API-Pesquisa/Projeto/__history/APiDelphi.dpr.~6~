@@ -1,0 +1,18 @@
+program APiDelphi;
+
+uses
+  Vcl.Forms,
+  Servidor in '..\Servidor\Servidor.pas' {form_servidor} ,
+  Controler.Pesquisa in '..\Controler\Controler.Pesquisa.pas',
+  Base in '..\Base\Base.pas' {DM: TDataModule};
+// CTVLib_TLB in '..\..\..\..\22.0\Imports\CTVLib_TLB.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(Tform_servidor, form_servidor);
+  Application.Run;
+
+end.

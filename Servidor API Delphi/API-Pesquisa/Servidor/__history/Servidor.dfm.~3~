@@ -1,0 +1,16 @@
+object form_servidor: Tform_servidor
+  Left = 0
+  Top = 0
+  Caption = 'Servidor'
+  ClientHeight = 299
+  ClientWidth = 405
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OnClose = FormClose
+  OnShow = FormShow
+  TextHeight = 13
+end

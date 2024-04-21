@@ -1,0 +1,176 @@
+unit Base;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
+  FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.VCLUI.Wait,
+  ComObj,
+  Data.Win.ADODB, Data.DB, FireDAC.Comp.Client, DataSet.Serialize.Config,
+  DataSet.Serialize, System.JSON, ActiveX, ADOInt,
+  FireDAC.Phys.IBDef, FireDAC.Phys.IBBase, FireDAC.Phys.IB, Horse;
+
+type
+  TDM = class(TDataModule)
+    Conn: TADOConnection;
+    procedure DataModuleCreate(Sender: TObject);
+    function ListarProduto(id: String): TJSONObject;
+    function ListarTodosProdutos(): TJSONArray;
+    function DeleteProd(id: String): TJSONObject;
+    function InserirpProduto(cod_produto: String; desc_produto: String; cod_ean13: String; preco: Double; dt_cad: String; dt_alt: String): TJSONObject;
+  private
+    { Private declarations }
+  public
+  end;
+
+var
+  DM: TDM;
+  Existe: String;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+{$R *.dfm}
+
+
+function FormatarResultadoJSON(Qry: TADOQuery): TJSONObject;
+var
+  JSONArray: TJSONArray;
+begin
+  // Criar um array JSON e copiar os dados da consulta para ele
+  JSONArray := Qry.ToJSONArray();
+
+  // Criar um objeto JSON que conterá o array
+  Result := TJSONObject.Create;
+  Result.AddPair('Produtos', JSONArray); // Adiciona o array JSON ao objeto JSON
+
+  // Agora você tem um objeto JSON com a chave 'Produtos' que contém os dados formatados
+end;
+
+procedure TDM.DataModuleCreate(Sender: TObject);
+begin
+  TDataSetSerializeConfig.GetInstance.CaseNameDefinition := cndLower;
+  TDataSetSerializeConfig.GetInstance.Import.DecimalSeparator := '.';
+  Conn.DefaultDatabase := 'api_backend';
+  Conn.Connected := True;
+end;
+
+function TDM.ListarTodosProdutos(): TJSONArray;
+var
+  Qry: TADOQuery;
+
+  obj : TJSONObject;
+begin
+  try
+    Qry := TADOQuery.Create(nil);
+    obj :=  TJSONObject.Create(nil);
+    Qry.Connection := Conn;
+    Qry.SQL.Add('select * from Produtos');
+    Qry.Active := True;
+
+    Result := Qry.ToJSONArray();
+    Qry.Close;
+  finally
+    FreeAndNil(Qry);
+  end;
+
+end;
+
+function TDM.ListarProduto(id: String): TJSONObject;
+var
+  Qry: TADOQuery;
+begin
+  try
+    Qry := TADOQuery.Create(nil);
+    Qry.Connection := Conn;
+    Qry.SQL.Add('Select * from Produtos where cod_produto = :cod_produto ');
+    Qry.Parameters.ParamByName('cod_produto').Value := id;
+    Qry.Active := True;
+
+    Result := Qry.ToJSONObject;
+    Qry.Close;
+  finally
+    FreeAndNil(Qry);
+  end;
+end;
+
+function DeleteProd(id: String): TJSONObject;
+begin
+end;
+
+
+function TDM.DeleteProd(id: String): TJSONObject;
+var
+  Qry: TADOQuery;
+  PrecoFormatado :String;
+begin
+  try
+    Qry := TADOQuery.Create(nil);
+    Qry.Connection := Conn;
+
+    Qry.SQL.Add('Select cod_produto from Produtos where cod_produto = :cod_produto');
+    Qry.Parameters.ParamByName('cod_produto').Value := id;
+    Qry.Open;
+
+
+    if Qry.RecordCount > 0 then
+    begin
+      Existe := id;
+      Qry.Close;
+      Qry.SQL.Add('delete from Produtos where cod_produto = ' + QuotedStr(id));
+      Qry.ExecSQL;
+      Result := Qry.ToJSONObject;
+      Qry.Close;
+    end
+    else
+    begin
+      Existe := '';
+      Result := Qry.ToJSONObject();
+      Qry.Close;
+    end;
+  finally
+    FreeAndNil(Qry);
+  end;
+
+end;
+
+function TDM.InserirpProduto(cod_produto, desc_produto: String;
+  cod_ean13: String; preco: Double; dt_cad, dt_alt: String): TJSONObject;
+var
+  Qry: TADOQuery;
+  PrecoFormatado :String;
+begin
+  try
+    Qry := TADOQuery.Create(nil);
+    Qry.Connection := Conn;
+
+    Qry.SQL.Add('Select cod_produto from Produtos where cod_produto = :cod_produto ');
+    Qry.Parameters.ParamByName('cod_produto').Value := cod_produto;
+    Qry.Open;
+
+    Existe := '' ;
+    if Qry.RecordCount > 0 then
+    begin
+      Existe := Qry.FieldByName('cod_produto').AsString;
+      Result := Qry.ToJSONObject();
+      Qry.Close;
+    end
+    else
+    begin
+      PrecoFormatado := StringReplace(FloatToStr(preco), ',', '.', [rfReplaceAll]);
+      Qry.SQL.Add('insert into Produtos(cod_produto,desc_produto,cod_ean13,preco,dt_cadastro,dt_alteracao)');
+      Qry.SQL.Add('VALUES(' + QuotedStr(cod_produto) + ',' + QuotedStr(desc_produto) + ',' +
+        QuotedStr(cod_ean13) + ',' + QuotedStr(PrecoFormatado) + ','+ QuotedStr(dt_cad) + ',' +QuotedStr(dt_alt) + ' )');
+
+      Qry.ExecSQL;
+
+      Result := Qry.ToJSONObject;
+      Qry.Close;
+    end;
+  finally
+    FreeAndNil(Qry);
+  end;
+end;
+
+end.

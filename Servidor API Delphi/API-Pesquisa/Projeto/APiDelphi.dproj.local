@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2021/01/18 10:14:15.000.727,=C:\Users\administrator.FARBEN\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2021/01/18 14:05:24.000.748,=C:\Users\administrator.FARBEN\Documents\Embarcadero\Studio\Projects\SplitPaneView1.pas</Transaction>
+    <Transaction>2021/01/18 14:05:24.000.314,=C:\Users\administrator.FARBEN\Documents\Embarcadero\Studio\Projects\GridPaneView1.pas</Transaction>
+    <Transaction>2021/01/18 14:05:39.000.213,=C:\Users\administrator.FARBEN\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/08/24 08:16:38.000.640,=C:\Users\administrator.FARBEN\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/08/24 14:24:51.000.869,=C:\Users\administrator.FARBEN\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/08/31 12:05:18.000.052,=C:\Users\administrator.FARBEN\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/11/10 16:32:42.000.470,=C:\Users\administrator.FARBEN\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/11/10 16:35:44.000.423,=C:\Users\administrator.FARBEN\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/03/15 08:56:16.000.016,=C:\Users\administrator.FARBEN\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/03/15 08:57:25.000.237,C:\Desenvolvimento\API-Pesquisa\Servidor\Servidor.pas=C:\Users\administrator.FARBEN\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/03/15 08:57:25.000.237,C:\Desenvolvimento\API-Pesquisa\Servidor\Servidor.dfm=C:\Users\administrator.FARBEN\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2024/03/15 08:57:42.000.341,C:\Desenvolvimento\API-Pesquisa\Projeto\APiDelphi.dproj=C:\Users\administrator.FARBEN\Documents\Embarcadero\Studio\Projects\Project2.dproj</Transaction>
+    <Transaction>2024/03/15 09:05:37.000.988,=C:\Desenvolvimento\API-Pesquisa\Projeto\Unit1.pas</Transaction>
+    <Transaction>2024/03/15 09:06:20.000.348,C:\Desenvolvimento\API-Pesquisa\Controler\Controler.Pesquisa.pas=C:\Desenvolvimento\API-Pesquisa\Projeto\Unit1.pas</Transaction>
+    <Transaction>2024/03/15 23:10:42.000.223,=C:\Users\rafae\OneDrive\Documentos\Embarcadero\Studio\Projects\API\API-Pesquisa\Projeto\Unit1.pas</Transaction>
+    <Transaction>2024/03/15 23:11:01.000.924,=C:\Users\rafae\OneDrive\Documentos\Embarcadero\Studio\Projects\API\API-Pesquisa\Base\Base.pas</Transaction>
+    <Transaction>2024/03/17 20:22:07.000.219,=C:\Users\rafae\OneDrive\Documentos\Embarcadero\Studio\22.0\Imports\CTVLib_TLB.pas</Transaction>
+  </Transactions>
+</BorlandProject>

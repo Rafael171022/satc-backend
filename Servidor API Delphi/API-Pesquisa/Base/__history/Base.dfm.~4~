@@ -1,0 +1,15 @@
+object DM: TDM
+  OnCreate = DataModuleCreate
+  Height = 331
+  Width = 505
+  object Conn2: TADOConnection
+    Connected = True
+    ConnectionString = 
+      'Provider=SQLOLEDB.1;Integrated Security=SSPI;Persist Security In' +
+      'fo=False;Initial Catalog=CGM_DELPHI;Data Source=RafaelR-Pc;'
+    LoginPrompt = False
+    Provider = 'SQLOLEDB.1'
+    Left = 88
+    Top = 48
+  end
+end

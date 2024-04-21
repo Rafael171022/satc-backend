@@ -1,0 +1,19 @@
+object DM: TDM
+  OnCreate = DataModuleCreate
+  Height = 331
+  Width = 505
+  object Conn2: TADOConnection
+    Connected = True
+    ConnectionString = 
+      'Provider=SQLOLEDB.1;Integrated Security=SSPI;Persist Security In' +
+      'fo=False;Initial Catalog=CGM_DELPHI;Data Source=RafaelR-Pc;Use P' +
+      'rocedure for Prepare=1;Auto Translate=True;Packet Size=4096;Work' +
+      'station ID=RAFAELR-PC;Use Encryption for Data=False;Tag with col' +
+      'umn collation when possible=False'
+    LoginPrompt = False
+    Mode = cmReadWrite
+    Provider = 'SQLOLEDB.1'
+    Left = 88
+    Top = 48
+  end
+end
