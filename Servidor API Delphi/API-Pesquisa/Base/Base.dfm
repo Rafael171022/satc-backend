@@ -5,7 +5,7 @@ object DM: TDM
   object Conn: TADOConnection
     ConnectionString = 
       'Provider=SQLOLEDB.1;Integrated Security=SSPI;Persist Security In' +
-      'fo=False;Initial Catalog=api_backend;Data Source=RafaelR-Pc;Use ' +
+      'fo=False;Initial Catalog=api_backend;Data Source=localhost;Use ' +
       'Procedure for Prepare=1;Auto Translate=True;Packet Size=4096;Wor' +
       'kstation ID=RAFAELR-PC;Use Encryption for Data=False;Tag with co' +
       'lumn collation when possible=False;'
