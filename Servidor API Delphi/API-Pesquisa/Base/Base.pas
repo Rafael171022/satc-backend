@@ -38,14 +38,13 @@ function FormatarResultadoJSON(Qry: TADOQuery): TJSONObject;
 var
   JSONArray: TJSONArray;
 begin
-  // Criar um array JSON e copiar os dados da consulta para ele
+
   JSONArray := Qry.ToJSONArray();
 
-  // Criar um objeto JSON que conterá o array
   Result := TJSONObject.Create;
-  Result.AddPair('Produtos', JSONArray); // Adiciona o array JSON ao objeto JSON
+  Result.AddPair('Produtos', JSONArray); 
 
-  // Agora você tem um objeto JSON com a chave 'Produtos' que contém os dados formatados
+ 
 end;
 
 procedure TDM.DataModuleCreate(Sender: TObject);
